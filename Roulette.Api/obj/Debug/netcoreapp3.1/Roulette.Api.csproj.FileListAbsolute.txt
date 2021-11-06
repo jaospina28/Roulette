@@ -1,3 +1,10 @@
+C:\Users\jaosp\source\repos\Roulette\Roulette.Api\obj\Debug\netcoreapp3.1\Roulette.Api.csprojAssemblyReference.cache
+C:\Users\jaosp\source\repos\Roulette\Roulette.Api\obj\Debug\netcoreapp3.1\Roulette.Api.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jaosp\source\repos\Roulette\Roulette.Api\obj\Debug\netcoreapp3.1\Roulette.Api.AssemblyInfoInputs.cache
+C:\Users\jaosp\source\repos\Roulette\Roulette.Api\obj\Debug\netcoreapp3.1\Roulette.Api.AssemblyInfo.cs
+C:\Users\jaosp\source\repos\Roulette\Roulette.Api\obj\Debug\netcoreapp3.1\Roulette.Api.csproj.CoreCompileInputs.cache
+C:\Users\jaosp\source\repos\Roulette\Roulette.Api\obj\Debug\netcoreapp3.1\Roulette.Api.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\jaosp\source\repos\Roulette\Roulette.Api\obj\Debug\netcoreapp3.1\Roulette.Api.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\jaosp\source\repos\Roulette\Roulette.Api\bin\Debug\netcoreapp3.1\appsettings.Development.json
 C:\Users\jaosp\source\repos\Roulette\Roulette.Api\bin\Debug\netcoreapp3.1\appsettings.json
 C:\Users\jaosp\source\repos\Roulette\Roulette.Api\bin\Debug\netcoreapp3.1\Roulette.Api.exe
@@ -6,9 +13,17 @@ C:\Users\jaosp\source\repos\Roulette\Roulette.Api\bin\Debug\netcoreapp3.1\Roulet
 C:\Users\jaosp\source\repos\Roulette\Roulette.Api\bin\Debug\netcoreapp3.1\Roulette.Api.runtimeconfig.dev.json
 C:\Users\jaosp\source\repos\Roulette\Roulette.Api\bin\Debug\netcoreapp3.1\Roulette.Api.dll
 C:\Users\jaosp\source\repos\Roulette\Roulette.Api\bin\Debug\netcoreapp3.1\Roulette.Api.pdb
+C:\Users\jaosp\source\repos\Roulette\Roulette.Api\bin\Debug\netcoreapp3.1\AutoMapper.dll
+C:\Users\jaosp\source\repos\Roulette\Roulette.Api\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\jaosp\source\repos\Roulette\Roulette.Api\bin\Debug\netcoreapp3.1\FluentValidation.dll
+C:\Users\jaosp\source\repos\Roulette\Roulette.Api\bin\Debug\netcoreapp3.1\FluentValidation.AspNetCore.dll
+C:\Users\jaosp\source\repos\Roulette\Roulette.Api\bin\Debug\netcoreapp3.1\FluentValidation.DependencyInjectionExtensions.dll
+C:\Users\jaosp\source\repos\Roulette\Roulette.Api\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\jaosp\source\repos\Roulette\Roulette.Api\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\Users\jaosp\source\repos\Roulette\Roulette.Api\bin\Debug\netcoreapp3.1\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\jaosp\source\repos\Roulette\Roulette.Api\bin\Debug\netcoreapp3.1\Microsoft.Bcl.HashCode.dll
 C:\Users\jaosp\source\repos\Roulette\Roulette.Api\bin\Debug\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+C:\Users\jaosp\source\repos\Roulette\Roulette.Api\bin\Debug\netcoreapp3.1\Microsoft.DotNet.PlatformAbstractions.dll
 C:\Users\jaosp\source\repos\Roulette\Roulette.Api\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.dll
 C:\Users\jaosp\source\repos\Roulette\Roulette.Api\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Abstractions.dll
 C:\Users\jaosp\source\repos\Roulette\Roulette.Api\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
@@ -21,6 +36,7 @@ C:\Users\jaosp\source\repos\Roulette\Roulette.Api\bin\Debug\netcoreapp3.1\Micros
 C:\Users\jaosp\source\repos\Roulette\Roulette.Api\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Binder.dll
 C:\Users\jaosp\source\repos\Roulette\Roulette.Api\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.dll
 C:\Users\jaosp\source\repos\Roulette\Roulette.Api\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\jaosp\source\repos\Roulette\Roulette.Api\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyModel.dll
 C:\Users\jaosp\source\repos\Roulette\Roulette.Api\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.dll
 C:\Users\jaosp\source\repos\Roulette\Roulette.Api\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.Abstractions.dll
 C:\Users\jaosp\source\repos\Roulette\Roulette.Api\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Options.dll
@@ -32,6 +48,7 @@ C:\Users\jaosp\source\repos\Roulette\Roulette.Api\bin\Debug\netcoreapp3.1\Micros
 C:\Users\jaosp\source\repos\Roulette\Roulette.Api\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\jaosp\source\repos\Roulette\Roulette.Api\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
 C:\Users\jaosp\source\repos\Roulette\Roulette.Api\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\jaosp\source\repos\Roulette\Roulette.Api\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
 C:\Users\jaosp\source\repos\Roulette\Roulette.Api\bin\Debug\netcoreapp3.1\System.Collections.Immutable.dll
 C:\Users\jaosp\source\repos\Roulette\Roulette.Api\bin\Debug\netcoreapp3.1\System.Configuration.ConfigurationManager.dll
 C:\Users\jaosp\source\repos\Roulette\Roulette.Api\bin\Debug\netcoreapp3.1\System.Diagnostics.DiagnosticSource.dll
@@ -50,12 +67,6 @@ C:\Users\jaosp\source\repos\Roulette\Roulette.Api\bin\Debug\netcoreapp3.1\Roulet
 C:\Users\jaosp\source\repos\Roulette\Roulette.Api\bin\Debug\netcoreapp3.1\Roulette.Infrastructure.dll
 C:\Users\jaosp\source\repos\Roulette\Roulette.Api\bin\Debug\netcoreapp3.1\Roulette.Core.pdb
 C:\Users\jaosp\source\repos\Roulette\Roulette.Api\bin\Debug\netcoreapp3.1\Roulette.Infrastructure.pdb
-C:\Users\jaosp\source\repos\Roulette\Roulette.Api\obj\Debug\netcoreapp3.1\Roulette.Api.csprojAssemblyReference.cache
-C:\Users\jaosp\source\repos\Roulette\Roulette.Api\obj\Debug\netcoreapp3.1\Roulette.Api.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\jaosp\source\repos\Roulette\Roulette.Api\obj\Debug\netcoreapp3.1\Roulette.Api.AssemblyInfoInputs.cache
-C:\Users\jaosp\source\repos\Roulette\Roulette.Api\obj\Debug\netcoreapp3.1\Roulette.Api.AssemblyInfo.cs
-C:\Users\jaosp\source\repos\Roulette\Roulette.Api\obj\Debug\netcoreapp3.1\Roulette.Api.csproj.CoreCompileInputs.cache
-C:\Users\jaosp\source\repos\Roulette\Roulette.Api\obj\Debug\netcoreapp3.1\Roulette.Api.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\jaosp\source\repos\Roulette\Roulette.Api\obj\Debug\netcoreapp3.1\staticwebassets\Roulette.Api.StaticWebAssets.Manifest.cache
 C:\Users\jaosp\source\repos\Roulette\Roulette.Api\obj\Debug\netcoreapp3.1\staticwebassets\Roulette.Api.StaticWebAssets.xml
 C:\Users\jaosp\source\repos\Roulette\Roulette.Api\obj\Debug\netcoreapp3.1\scopedcss\bundle\Roulette.Api.styles.css
