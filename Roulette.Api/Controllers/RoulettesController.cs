@@ -1,7 +1,10 @@
 ﻿using AutoMapper;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Roulette.Api.Responses;
+using Roulette.Core.Command;
 using Roulette.Core.DTOs;
+using Roulette.Core.Entities;
 using Roulette.Core.Interfaces;
 using System;
 using System.Collections;
@@ -58,15 +61,34 @@ namespace Roulette.Api.Controllers
             var response = new ApiResponse<bool>(result);
             return Ok(response);
         }
-        [HttpPut("opening/{id}")]
-        public async Task<IActionResult> RouletteOpening(int id)
+        [HttpPut("opening/{rouletteId}")]
+        public async Task<IActionResult> OpeningRoulette(int rouletteId)
         {
-            if (id == 0)
+            if (rouletteId == 0)
             {
                 return NotFound();
             }
-            var result = await _rouletteService.OpeningRoulette(id);
+            var result = await _rouletteService.OpeningRoulette(rouletteId);
             var response = new ApiResponse<string>(result);
+            return Ok(response);
+        }
+        [HttpPut("close/{rouletteId}")]
+        public async Task<IActionResult> CloseRoulette(int rouletteId)
+        {
+            if (rouletteId == 0)
+            {
+                return NotFound();
+            }
+            var result = await _rouletteService.CloseRoulette(rouletteId);
+            var response = new ApiResponse<IEnumerable<BetDto>>(result);
+            return Ok(response);
+        }
+        [HttpPost("bet")]
+        public async Task<IActionResult> PostBet([FromBody] PostBetCommand postBetCommand)
+        {
+            var bet =await _rouletteService.PostBet(postBetCommand);
+            var betDto = _mapper.Map<BetDto>(bet);
+            var response = new ApiResponse<BetDto>(betDto);
             return Ok(response);
         }
     }

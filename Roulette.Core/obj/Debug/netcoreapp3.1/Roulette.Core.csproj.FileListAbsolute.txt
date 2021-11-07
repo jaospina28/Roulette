@@ -1,10 +1,13 @@
 C:\Users\jaosp\source\repos\Roulette\Roulette.Core\bin\Debug\netcoreapp3.1\Roulette.Core.deps.json
 C:\Users\jaosp\source\repos\Roulette\Roulette.Core\bin\Debug\netcoreapp3.1\Roulette.Core.dll
 C:\Users\jaosp\source\repos\Roulette\Roulette.Core\bin\Debug\netcoreapp3.1\Roulette.Core.pdb
+C:\Users\jaosp\source\repos\Roulette\Roulette.Core\obj\Debug\netcoreapp3.1\Roulette.Core.csprojAssemblyReference.cache
 C:\Users\jaosp\source\repos\Roulette\Roulette.Core\obj\Debug\netcoreapp3.1\Roulette.Core.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\jaosp\source\repos\Roulette\Roulette.Core\obj\Debug\netcoreapp3.1\Roulette.Core.AssemblyInfoInputs.cache
 C:\Users\jaosp\source\repos\Roulette\Roulette.Core\obj\Debug\netcoreapp3.1\Roulette.Core.AssemblyInfo.cs
 C:\Users\jaosp\source\repos\Roulette\Roulette.Core\obj\Debug\netcoreapp3.1\Roulette.Core.csproj.CoreCompileInputs.cache
 C:\Users\jaosp\source\repos\Roulette\Roulette.Core\obj\Debug\netcoreapp3.1\Roulette.Core.dll
 C:\Users\jaosp\source\repos\Roulette\Roulette.Core\obj\Debug\netcoreapp3.1\Roulette.Core.pdb
-C:\Users\jaosp\source\repos\Roulette\Roulette.Core\obj\Debug\netcoreapp3.1\Roulette.Core.csprojAssemblyReference.cache
+C:\Users\jaosp\source\repos\Roulette\Roulette.Core\bin\Debug\netcoreapp3.1\Roulette.Core.runtimeconfig.json
+C:\Users\jaosp\source\repos\Roulette\Roulette.Core\bin\Debug\netcoreapp3.1\Roulette.Core.runtimeconfig.dev.json
+C:\Users\jaosp\source\repos\Roulette\Roulette.Core\obj\Debug\netcoreapp3.1\Roulette.Core.genruntimeconfig.cache

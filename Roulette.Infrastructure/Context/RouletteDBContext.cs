@@ -5,7 +5,7 @@ namespace Roulette.Infrastructure.Context
 {
     public class RouletteDBContext : DbContext
     {
-        public RouletteDBContext(DbContextOptions<RouletteDBContext> options): base(options)
+        public RouletteDBContext(DbContextOptions options): base(options)
         {
 
         }

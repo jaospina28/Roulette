@@ -32,10 +32,11 @@ namespace Roulette.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            
             services.AddDbContext<RouletteDBContext>(options =>
                                                     options.UseSqlServer(Configuration.GetConnectionString("Roulette")));
 
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddCors(options => options.AddPolicy("AllowWebApp",
                                                 builder => builder.AllowAnyOrigin()
                                                                     .AllowAnyHeader()
@@ -49,15 +50,17 @@ namespace Roulette.Api
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
             });
             services.AddTransient<IRouletteRepository, RouletteRepository>();
+            services.AddTransient<IBetRepository, BetRepository>();
+            services.AddTransient<IPlayerRepository, PlayerRepository>();
             services.AddTransient<IRouletteService, RouletteService>();
 
             services.AddMvc(options =>
             {
                 options.Filters.Add<ValidationFilter>();
-            }).AddFluentValidation(options =>
+            })/*.AddFluentValidation(options =>
             {
                 options.RegisterValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());
-            });
+            })*/;
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

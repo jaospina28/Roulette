@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "1RXCrZEA1jlhZDhM34W2Y/2Hhv75jCnSDPw80agysEgfPgCZOI4W1Ja6y7U91n990ZgiuGBCae3KGpxzgJuNUw==",
+  "dgSpecHash": "tifirXtllicokn/s9zeNJR8USEGoxam9tYqWhxOJwbw45n5bnZBt+xCK3W+qF91D0pBn2oOADBpcO2ZpVnPkgQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\jaosp\\source\\repos\\Roulette\\Roulette.Api\\Roulette.Api.csproj",
   "expectedPackageFiles": [
@@ -9,6 +9,8 @@
     "C:\\Users\\jaosp\\.nuget\\packages\\fluentvalidation\\8.6.3\\fluentvalidation.8.6.3.nupkg.sha512",
     "C:\\Users\\jaosp\\.nuget\\packages\\fluentvalidation.aspnetcore\\8.6.3\\fluentvalidation.aspnetcore.8.6.3.nupkg.sha512",
     "C:\\Users\\jaosp\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\8.6.3\\fluentvalidation.dependencyinjectionextensions.8.6.3.nupkg.sha512",
+    "C:\\Users\\jaosp\\.nuget\\packages\\mediatr\\7.0.0\\mediatr.7.0.0.nupkg.sha512",
+    "C:\\Users\\jaosp\\.nuget\\packages\\mediatr.extensions.microsoft.dependencyinjection\\7.0.0\\mediatr.extensions.microsoft.dependencyinjection.7.0.0.nupkg.sha512",
     "C:\\Users\\jaosp\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\jaosp\\.nuget\\packages\\microsoft.aspnetcore.authentication.core\\2.2.0\\microsoft.aspnetcore.authentication.core.2.2.0.nupkg.sha512",
     "C:\\Users\\jaosp\\.nuget\\packages\\microsoft.aspnetcore.authorization\\2.2.0\\microsoft.aspnetcore.authorization.2.2.0.nupkg.sha512",

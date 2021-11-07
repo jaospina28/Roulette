@@ -73,9 +73,22 @@ namespace Roulette.Infrastructure.Repositories
             }
             catch (Exception ex)
             {
-                throw new Exception("La ruleta no fue editada");
+                throw new Exception("La ruleta no fue abierta, consulte al administrador");
             }
             return "La operación fue exitosa";
+        }
+        public async Task<string> CloseRoulette(Core.Entities.Roulette roulette)
+        {
+            _context.Entry(roulette).State = EntityState.Modified;
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("La ruleta no fue cerrada, consulte al administrador");
+            }
+            return "La ruleta fue cerrada con exito";
         }
     }
 }

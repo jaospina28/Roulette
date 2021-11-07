@@ -11,5 +11,6 @@ namespace Roulette.Core.Interfaces
         Task<Core.Entities.Roulette> PutRoulette(Core.Entities.Roulette roulette);
         Task<bool> DeleteRoulette(Core.Entities.Roulette roulette);
         Task<string> OpeningRoulette(Core.Entities.Roulette roulette);
+        Task<string> CloseRoulette(Core.Entities.Roulette roulette);
     }
 }
