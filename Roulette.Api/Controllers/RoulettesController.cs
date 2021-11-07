@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Roulette.Api.Responses;
 using Roulette.Core.DTOs;
 using Roulette.Core.Interfaces;
 using System;
@@ -13,51 +14,60 @@ namespace Roulette.Api.Controllers
     [ApiController]
     public class RoulettesController : ControllerBase
     {
-        private readonly IRouletteRepository _rouletteRepository;
+        private readonly IRouletteService _rouletteService;
         private readonly IMapper _mapper;
-        public RoulettesController(IRouletteRepository rouletteRepository, IMapper mapper)
+        public RoulettesController(IRouletteService rouletteService, IMapper mapper)
         {
-            _rouletteRepository = rouletteRepository;
+            _rouletteService = rouletteService;
             _mapper = mapper;
         }
         [HttpGet]
         public async Task<IActionResult> GetRoulettes()
         {
-            var roulettes = await _rouletteRepository.GetRoulettes();
+            var roulettes = await _rouletteService.GetRoulettes();
             var roulettesDto = _mapper.Map<IEnumerable<RouletteDto>>(roulettes);
-            return Ok(roulettesDto);
+            var response = new ApiResponse<IEnumerable<RouletteDto>>(roulettesDto);
+            return Ok(response);
         }
         [HttpPost]
         public async Task<IActionResult> Post(RouletteDto rouletteDto)
         {
             var roulette = _mapper.Map<Core.Entities.Roulette>(rouletteDto);
-            await _rouletteRepository.Post(roulette);
-            return Ok(roulette);
+            await _rouletteService.PostRoulette(roulette);
+            rouletteDto = _mapper.Map<RouletteDto>(roulette);
+            var response = new ApiResponse<RouletteDto>(rouletteDto);
+            return Ok(response);
         }
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, [FromBody] RouletteDto rouletteDto)
         {
-            try
+            if (id != rouletteDto.Id)
             {
-                if (id != rouletteDto.Id)
-                {
-                    return NotFound();
-                }
-                var roulette = _mapper.Map<Core.Entities.Roulette>(rouletteDto);
-                await _rouletteRepository.Put(roulette);
-                return Ok(new { message = "La Ruleta fue modificada con exito" });
+                return NotFound();
             }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-
+            var roulette = _mapper.Map<Core.Entities.Roulette>(rouletteDto);
+            await _rouletteService.PutRoulette(roulette);
+            rouletteDto = _mapper.Map<RouletteDto>(roulette);
+            var response = new ApiResponse<RouletteDto>(rouletteDto);
+            return Ok(response);
         }
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id,Core.Entities.Roulette roulette)
+        public async Task<IActionResult> Delete(int id)
         {
-            await _rouletteRepository.Delete(roulette);
-            return Ok(new { message = "La Ruleta fue eliminada con exito" });
+            var result = await _rouletteService.DeleteRoulette(id);
+            var response = new ApiResponse<bool>(result);
+            return Ok(response);
+        }
+        [HttpPut("opening/{id}")]
+        public async Task<IActionResult> RouletteOpening(int id)
+        {
+            if (id == 0)
+            {
+                return NotFound();
+            }
+            var result = await _rouletteService.OpeningRoulette(id);
+            var response = new ApiResponse<string>(result);
+            return Ok(response);
         }
     }
 }

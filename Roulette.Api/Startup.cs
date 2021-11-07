@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Roulette.Core.Interfaces;
+using Roulette.Core.Services;
 using Roulette.Infrastructure.Context;
 using Roulette.Infrastructure.Filters;
 using Roulette.Infrastructure.Repositories;
@@ -39,11 +40,16 @@ namespace Roulette.Api
                                                 builder => builder.AllowAnyOrigin()
                                                                     .AllowAnyHeader()
                                                                     .AllowAnyMethod()));
-            services.AddControllers().AddNewtonsoftJson(options =>
+            services.AddSwaggerGen();
+            services.AddControllers(options =>
+            {
+                options.Filters.Add<GlobalExceptionFilter>();
+            }).AddNewtonsoftJson(options =>
             {
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
             });
             services.AddTransient<IRouletteRepository, RouletteRepository>();
+            services.AddTransient<IRouletteService, RouletteService>();
 
             services.AddMvc(options =>
             {
@@ -63,7 +69,13 @@ namespace Roulette.Api
             }
 
             app.UseHttpsRedirection();
-
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                string swaggerJsonBasePath = string.IsNullOrEmpty(c.RoutePrefix) ? "." : "..";
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Roulette V.1");
+                c.RoutePrefix = string.Empty;
+            });
             app.UseRouting();
 
             app.UseAuthorization();

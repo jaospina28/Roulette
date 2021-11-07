@@ -14,12 +14,17 @@ namespace Roulette.Infrastructure.Repositories
         {
             _context = context;
         }
+        public async Task<Core.Entities.Roulette> GetRouletteById(int id)
+        {
+            var roulettes = await _context.Roulettes.FindAsync(id);
+            return roulettes;
+        }
         public async Task<IEnumerable<Core.Entities.Roulette>> GetRoulettes()
         {
             var roulettes = await _context.Roulettes.ToListAsync();
             return roulettes;
         }
-        public async Task<Core.Entities.Roulette> Post(Core.Entities.Roulette roulette)
+        public async Task<Core.Entities.Roulette> PostRoulette(Core.Entities.Roulette roulette)
         {
             _context.Roulettes.Add(roulette);
             try
@@ -32,7 +37,7 @@ namespace Roulette.Infrastructure.Repositories
             }
             return roulette;
         }
-        public async Task<Core.Entities.Roulette> Put(Core.Entities.Roulette roulette)
+        public async Task<Core.Entities.Roulette> PutRoulette(Core.Entities.Roulette roulette)
         {
             _context.Entry(roulette).State = EntityState.Modified;
             try
@@ -45,18 +50,32 @@ namespace Roulette.Infrastructure.Repositories
             }
             return roulette;
         }
-        public async Task<bool> Delete(Core.Entities.Roulette roulette)
+        public async Task<bool> DeleteRoulette(Core.Entities.Roulette roulette)
         {
+            int row;
             _context.Remove(roulette);
+            try
+            {
+                row = await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("La ruleta no fue eliminada");
+            }
+            return row > 0;
+        }
+        public async Task<string> OpeningRoulette(Core.Entities.Roulette roulette)
+        {
+            _context.Entry(roulette).State = EntityState.Modified;
             try
             {
                 await _context.SaveChangesAsync();
             }
             catch (Exception ex)
             {
-                throw new Exception("La ruleta no fue eliminada");
+                throw new Exception("La ruleta no fue editada");
             }
-            return true;
+            return "La operación fue exitosa";
         }
     }
 }

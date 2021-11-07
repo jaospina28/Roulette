@@ -7,3 +7,4 @@ C:\Users\jaosp\source\repos\Roulette\Roulette.Core\obj\Debug\netcoreapp3.1\Roule
 C:\Users\jaosp\source\repos\Roulette\Roulette.Core\obj\Debug\netcoreapp3.1\Roulette.Core.csproj.CoreCompileInputs.cache
 C:\Users\jaosp\source\repos\Roulette\Roulette.Core\obj\Debug\netcoreapp3.1\Roulette.Core.dll
 C:\Users\jaosp\source\repos\Roulette\Roulette.Core\obj\Debug\netcoreapp3.1\Roulette.Core.pdb
+C:\Users\jaosp\source\repos\Roulette\Roulette.Core\obj\Debug\netcoreapp3.1\Roulette.Core.csprojAssemblyReference.cache

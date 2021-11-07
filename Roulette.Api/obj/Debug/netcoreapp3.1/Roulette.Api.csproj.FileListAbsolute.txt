@@ -75,3 +75,7 @@ C:\Users\jaosp\source\repos\Roulette\Roulette.Api\obj\Debug\netcoreapp3.1\Roulet
 C:\Users\jaosp\source\repos\Roulette\Roulette.Api\obj\Debug\netcoreapp3.1\Roulette.Api.dll
 C:\Users\jaosp\source\repos\Roulette\Roulette.Api\obj\Debug\netcoreapp3.1\Roulette.Api.pdb
 C:\Users\jaosp\source\repos\Roulette\Roulette.Api\obj\Debug\netcoreapp3.1\Roulette.Api.genruntimeconfig.cache
+C:\Users\jaosp\source\repos\Roulette\Roulette.Api\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
+C:\Users\jaosp\source\repos\Roulette\Roulette.Api\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\jaosp\source\repos\Roulette\Roulette.Api\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\jaosp\source\repos\Roulette\Roulette.Api\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
