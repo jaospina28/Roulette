@@ -35,15 +35,5 @@ namespace Roulette.Infrastructure.Repositories
             }
             return bet;
         }
-        public async Task<IEnumerable<Bet>> GetWinningPlayerByNumberBet(int numberBet)
-        {
-            var winners = await _context.Bets.Where(x => x.NumberBet == numberBet).ToListAsync();
-            return winners;
-        }
-        public async Task<IEnumerable<Bet>> GetWinningPlayerByColorBet(string colorBet)
-        {
-            var winners = await _context.Bets.Where(x => x.ColorBet == colorBet).ToListAsync();
-            return winners;
-        }
     }
 }

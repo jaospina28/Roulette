@@ -41,26 +41,6 @@ namespace Roulette.Api.Controllers
             var response = new ApiResponse<RouletteDto>(rouletteDto);
             return Ok(response);
         }
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] RouletteDto rouletteDto)
-        {
-            if (id != rouletteDto.Id)
-            {
-                return NotFound();
-            }
-            var roulette = _mapper.Map<Core.Entities.Roulette>(rouletteDto);
-            await _rouletteService.PutRoulette(roulette);
-            rouletteDto = _mapper.Map<RouletteDto>(roulette);
-            var response = new ApiResponse<RouletteDto>(rouletteDto);
-            return Ok(response);
-        }
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
-        {
-            var result = await _rouletteService.DeleteRoulette(id);
-            var response = new ApiResponse<bool>(result);
-            return Ok(response);
-        }
         [HttpPut("opening/{rouletteId}")]
         public async Task<IActionResult> OpeningRoulette(int rouletteId)
         {

@@ -8,7 +8,7 @@ namespace Roulette.Core.Interfaces
 {
     public interface IRouletteService
     {
-        Task<IEnumerable<Core.Entities.Roulette>> GetRoulettes();
+        Task<List<Core.Entities.Roulette>> GetRoulettes();
         Task<Entities.Roulette> GetRoulette(int rouletteId);
         Task PostRoulette(Entities.Roulette roulette);
         Task<Core.Entities.Roulette> PutRoulette(Core.Entities.Roulette roulette);

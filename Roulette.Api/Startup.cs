@@ -57,10 +57,12 @@ namespace Roulette.Api
             services.AddMvc(options =>
             {
                 options.Filters.Add<ValidationFilter>();
-            })/*.AddFluentValidation(options =>
+            });
+
+            services.AddStackExchangeRedisCache(options =>
             {
-                options.RegisterValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());
-            })*/;
+                options.Configuration = "localhost:6379";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

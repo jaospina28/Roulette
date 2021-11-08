@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Roulette.Infrastructure.Context;
 
 namespace Roulette.Infrastructure.Migrations
 {
     [DbContext(typeof(RouletteDBContext))]
-    partial class RouletteDBContextModelSnapshot : ModelSnapshot
+    [Migration("20211107224749_Change model bet field NumberBet nullable")]
+    partial class ChangemodelbetfieldNumberBetnullable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

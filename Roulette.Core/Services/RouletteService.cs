@@ -9,6 +9,8 @@ using Roulette.Core.Command;
 using Roulette.Core.Entities;
 using AutoMapper;
 using Roulette.Core.DTOs;
+using Microsoft.Extensions.Caching.Distributed;
+using Newtonsoft.Json;
 
 namespace Roulette.Core.Services
 {
@@ -18,20 +20,42 @@ namespace Roulette.Core.Services
         private readonly IBetRepository _betRepository;
         private readonly IPlayerRepository _playerRepository;
         private readonly IMapper _mapper;
+        private readonly IDistributedCache _distributedCache;
         public RouletteService(IRouletteRepository rouletteRepository,
             IBetRepository betRepository,
             IPlayerRepository playerRepository,
-            IMapper mapper
+            IMapper mapper,
+            IDistributedCache distributedCache
             )
         {
             _rouletteRepository = rouletteRepository;
             _betRepository = betRepository;
             _playerRepository = playerRepository;
             _mapper = mapper;
+            _distributedCache = distributedCache;
         }
-        public async Task<IEnumerable<Core.Entities.Roulette>> GetRoulettes()
+        public async Task<List<Core.Entities.Roulette>> GetRoulettes()
         {
-            return await _rouletteRepository.GetRoulettes();
+            var cacheKey = "ListRoulettes";
+            string serializedListRoulettes;
+            var listRoulettes = new List<Core.Entities.Roulette>();
+            var redisListRoulettes = await _distributedCache.GetAsync(cacheKey);
+            if (redisListRoulettes != null)
+            {
+                serializedListRoulettes = Encoding.UTF8.GetString(redisListRoulettes);
+                listRoulettes = JsonConvert.DeserializeObject<List<Core.Entities.Roulette>>(serializedListRoulettes);
+            }
+            else
+            {
+                listRoulettes = (List<Entities.Roulette>)await _rouletteRepository.GetRoulettes();
+                serializedListRoulettes = JsonConvert.SerializeObject(listRoulettes);
+                redisListRoulettes = Encoding.UTF8.GetBytes(serializedListRoulettes);
+                var options = new DistributedCacheEntryOptions()
+                                .SetAbsoluteExpiration(DateTime.Now.AddMinutes(10))
+                                .SetSlidingExpiration(TimeSpan.FromMinutes(2));
+                await _distributedCache.SetAsync(cacheKey, redisListRoulettes, options);
+            }
+            return listRoulettes;
         }
         public async Task<Core.Entities.Roulette> GetRoulette(int rouletteId)
         {
@@ -81,15 +105,30 @@ namespace Roulette.Core.Services
             var winningNumber = new Random().Next(0, 36);
             var winningColor = winningNumber % 2 == 0 ? "rojo" : "negro";
             roulette.RouletteStatus = false;
-            string response = await _rouletteRepository.CloseRoulette(roulette);
+            string closeRoulette = await _rouletteRepository.CloseRoulette(roulette);
             var betsPlaced = await _betRepository.GetBetsByRouletteId(rouletteId);
-            //var winnersByNumberBet = await _betRepository.GetWinningPlayerByNumberBet(winningNumber);
-            //var winnersByColorBet = await _betRepository.GetWinningPlayerByColorBet(winningColor);
             var winnersByNumberBet = betsPlaced.Where(x => x.NumberBet == winningNumber && x.ColorBet == null).ToList();
             var winnersByColorBet = betsPlaced.Where(x => x.ColorBet == winningColor.ToLower() && x.NumberBet == null).ToList();
             var losersByNumberBet = betsPlaced.Where(x => x.NumberBet != winningNumber && x.ColorBet == null).ToList();
             var losersByColorBet = betsPlaced.Where(x => x.ColorBet != winningColor.ToLower() && x.NumberBet == null).ToList();
-            foreach(var winnerByNumerBet in winnersByNumberBet)
+            InsertMoneyWinnersPlayers(winnersByNumberBet, winnersByColorBet);
+            DiscountMoneyWinnersPlayers(losersByNumberBet);
+            DiscountMoneyWinnersPlayers(losersByColorBet);
+            IEnumerable<BetDto> betsDto = _mapper.Map<IEnumerable<BetDto>>(betsPlaced);
+            return betsDto;
+        }
+        private async void DiscountMoneyWinnersPlayers(List<Bet> losersBet)
+        {
+            foreach (var loserBet in losersBet)
+            {
+                Player player = await _playerRepository.GetPlayerById(loserBet.PlayerId);
+                player.Money = (player.Money - loserBet.MoneyBet);
+                await _playerRepository.PutPlayer(player);
+            }
+        }
+        private async void InsertMoneyWinnersPlayers(List<Bet> winnersByNumberBet, List<Bet> winnersByColorBet)
+        {
+            foreach (var winnerByNumerBet in winnersByNumberBet)
             {
                 Player player = await _playerRepository.GetPlayerById(winnerByNumerBet.PlayerId);
                 player.Money = (player.Money - winnerByNumerBet.MoneyBet) + winnerByNumerBet.MoneyBet * 5;
@@ -101,23 +140,10 @@ namespace Roulette.Core.Services
                 player.Money = (player.Money - winnerByColorBet.MoneyBet) + winnerByColorBet.MoneyBet * 1.8;
                 await _playerRepository.PutPlayer(player);
             }
-            foreach (var loserByNumerBet in losersByNumberBet)
-            {
-                Player player = await _playerRepository.GetPlayerById(loserByNumerBet.PlayerId);
-                player.Money = (player.Money - loserByNumerBet.MoneyBet);
-                await _playerRepository.PutPlayer(player);
-            }
-            foreach (var loserByColorBet in losersByColorBet)
-            {
-                Player player = await _playerRepository.GetPlayerById(loserByColorBet.PlayerId);
-                player.Money = (player.Money - loserByColorBet.MoneyBet);
-                await _playerRepository.PutPlayer(player);
-            }
-            IEnumerable<BetDto> betsDto = _mapper.Map<IEnumerable<BetDto>>(betsPlaced);
-            return betsDto;
         }
         public async Task<Bet> PostBet(PostBetCommand postBetCommand)
         {
+            ValidateBet(postBetCommand);
             Core.Entities.Roulette roulette = await _rouletteRepository.GetRouletteById(postBetCommand.RouletteId);
             Player player = await _playerRepository.GetPlayerById(postBetCommand.PlayerId);
             if (player == null)
@@ -132,6 +158,17 @@ namespace Roulette.Core.Services
             {
                 throw new BusinessException("La ruleta se cerro anteriormente");
             }
+            postBetCommand.ColorBet.ToLower();
+            Bet bet = await _betRepository.PostBet(_mapper.Map<Bet>(postBetCommand));
+            var betsPlaced = _betRepository.GetBetsByRouletteId(postBetCommand.RouletteId);
+            return bet;
+        }
+        private void ValidateBet(PostBetCommand postBetCommand)
+        {
+            if (postBetCommand.NumberBet != null && postBetCommand.ColorBet != null)
+            {
+                throw new BusinessException("Solo se permite apostar por número o color");
+            }
             if (postBetCommand.MoneyBet < 1 || postBetCommand.MoneyBet > 1000)
             {
                 throw new BusinessException("Cantidad de dinero no permitida");
@@ -144,10 +181,6 @@ namespace Roulette.Core.Services
             {
                 throw new BusinessException("Color no permitido para la apuesta");
             }
-            postBetCommand.ColorBet.ToLower();
-            Bet bet = await _betRepository.PostBet(_mapper.Map<Bet>(postBetCommand));
-            var betsPlaced = _betRepository.GetBetsByRouletteId(postBetCommand.RouletteId);
-            return bet;
         }
     }
 }

@@ -8,7 +8,5 @@ namespace Roulette.Core.Interfaces
     {
         Task<IEnumerable<Bet>> GetBetsByRouletteId(int rouletteId);
         Task<Bet> PostBet(Bet bet);
-        Task<IEnumerable<Bet>> GetWinningPlayerByNumberBet(int numberBet);
-        Task<IEnumerable<Bet>> GetWinningPlayerByColorBet(string colorBet);
     }
 }

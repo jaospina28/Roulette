@@ -9,7 +9,7 @@ namespace Roulette.Core.Entities
     {
         public int RouletteId { get; set; }
         public int PlayerId { get; set; }
-        public int NumberBet { get; set; }
+        public int? NumberBet { get; set; }
         public string ColorBet { get; set; }
         public double MoneyBet { get; set; }
         [ForeignKey("RouletteId")]
